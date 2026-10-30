@@ -58,8 +58,10 @@ export function Skills() {
                   const Icon = tool.icon;
                   return (
                     <Reveal key={tool.title} delay={i * 80}>
-                      <div className="h-full rounded-2xl bg-cream p-5 text-navy transition-transform duration-300 hover:-translate-y-1">
-                        <Icon className="h-6 w-6 text-emerald" strokeWidth={1.6} />
+                      <div className="group h-full rounded-2xl border border-white/10 bg-cream p-5 text-navy shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-ivory shadow-xs border border-sand/40 transition-transform duration-300 group-hover:scale-105">
+                          <Icon className="h-6 w-6" />
+                        </div>
                         <p className="mt-4 font-serif text-lg leading-snug font-semibold">{tool.title}</p>
                         <p className="mt-1 text-xs text-muted">{tool.description}</p>
                       </div>

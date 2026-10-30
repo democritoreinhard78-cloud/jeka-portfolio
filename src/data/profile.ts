@@ -1,3 +1,4 @@
+import type { ComponentType } from 'react';
 import type { LucideIcon } from 'lucide-react';
 import {
   Briefcase,
@@ -5,16 +6,19 @@ import {
   Calculator,
   ClipboardList,
   Database,
-  FileSpreadsheet,
   FolderArchive,
-  LayoutGrid,
-  ListChecks,
+  Handshake,
+  Landmark,
   ShieldCheck,
   Users,
   Wallet,
-  Landmark,
-  Handshake,
 } from 'lucide-react';
+import {
+  ClickUpIcon,
+  ExcelIcon,
+  MicrosoftOfficeIcon,
+  QuickBooksIcon,
+} from '../components/BrandIcons';
 
 export const profile = {
   name: 'Jeka Mae R. Taping',
@@ -144,7 +148,7 @@ export const EXPERIENCE: Job[] = [
 export interface Skill {
   title: string;
   description: string;
-  icon: LucideIcon;
+  icon: LucideIcon | ComponentType<{ className?: string }>;
 }
 
 export const CORE_SKILLS: Skill[] = [
@@ -176,10 +180,10 @@ export const CORE_SKILLS: Skill[] = [
 ];
 
 export const TOOLS: Skill[] = [
-  { title: 'Microsoft Excel', description: 'Advanced data handling', icon: FileSpreadsheet },
-  { title: 'QuickBooks', description: 'Bookkeeping & accounting support', icon: Calculator },
-  { title: 'ClickUp', description: 'Task & project management', icon: ListChecks },
-  { title: 'Microsoft Office Suite', description: 'Word, PowerPoint & Outlook', icon: LayoutGrid },
+  { title: 'Microsoft Excel', description: 'Advanced data handling', icon: ExcelIcon },
+  { title: 'QuickBooks', description: 'Bookkeeping & accounting support', icon: QuickBooksIcon },
+  { title: 'ClickUp', description: 'Task & project management', icon: ClickUpIcon },
+  { title: 'Microsoft Office Suite', description: 'Word, PowerPoint & Outlook', icon: MicrosoftOfficeIcon },
 ];
 
 export const LANGUAGES = ['English', 'Filipino'];
