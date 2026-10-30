@@ -65,7 +65,13 @@ export function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <a href={profile.cvUrl} download className="btn btn-outline !px-5 !py-2.5">
+          <a
+            href={profile.cvUrl}
+            download="Jeka-Mae-Taping-CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline !px-5 !py-2.5"
+          >
             <Download className="h-4 w-4" /> Download CV
           </a>
           <a href="#contact" className="btn btn-primary !px-5 !py-2.5">
@@ -110,7 +116,13 @@ export function Navbar() {
             ))}
           </ul>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <a href={profile.cvUrl} download className="btn btn-outline">
+            <a
+              href={profile.cvUrl}
+              download="Jeka-Mae-Taping-CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline"
+            >
               <Download className="h-4 w-4" /> Download CV
             </a>
             <a href="#contact" onClick={() => setOpen(false)} className="btn btn-primary">

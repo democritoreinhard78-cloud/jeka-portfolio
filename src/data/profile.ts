@@ -31,8 +31,8 @@ export const profile = {
   facebookUrl: 'https://facebook.com/jekataping21',
   facebookLabel: 'facebook.com/jekataping21',
   /** Portrait photo in public/assets — a monogram card shows if it fails to load. */
-  portraitUrl: '/assets/jeka-portrait.png',
-  cvUrl: '/Jeka-Mae-Taping-CV.pdf',
+  portraitUrl: `${import.meta.env.BASE_URL}assets/jeka-portrait.png`,
+  cvUrl: `${import.meta.env.BASE_URL}Jeka-Mae-Taping-CV.pdf`,
   bio: 'Detail-oriented and organized BS Mathematics graduate with hands-on experience in finance, accounting support, property management, administration, data encoding, and human resources. Adept at maintaining financial records, monitoring company funds, processing statutory remittances, coordinating with clients/tenants, and ensuring strict compliance and confidentiality.',
 };
 
