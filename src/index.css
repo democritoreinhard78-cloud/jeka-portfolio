@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/* ---------- Design tokens: warm beige, cream, white, deep navy, gold & emerald ---------- */
+@theme {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
+  --color-ivory: #fffdf9;
+  --color-cream: #faf6ef;
+  --color-beige: #f1e8da;
+  --color-sand: #e3d4bd;
+  --color-taupe: #8a7b68;
+
+  --color-navy: #18243a;
+  --color-navy-soft: #24334d;
+  --color-ink: #1f2937;
+  --color-muted: #5b6578;
+
+  --color-gold: #b08d57;
+  --color-gold-soft: #d9c29a;
+  --color-emerald: #2e6b5a;
+  --color-emerald-soft: #e3efea;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+  }
+
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: #d9c29a;
+    color: #18243a;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-gold;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-8 bg-gold;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+  }
+
+  .btn-primary {
+    @apply bg-navy text-cream shadow-[0_10px_30px_-12px_rgba(24,36,58,0.6)] hover:-translate-y-0.5 hover:bg-navy-soft;
+  }
+
+  .btn-outline {
+    @apply border border-navy/20 bg-ivory/60 text-navy hover:-translate-y-0.5 hover:border-gold hover:text-gold;
+  }
+
+  .card {
+    @apply rounded-3xl border border-sand/70 bg-ivory shadow-[0_20px_50px_-30px_rgba(24,36,58,0.35)];
+  }
+
+  .field {
+    @apply w-full rounded-2xl border border-sand bg-cream/60 px-4 py-3 text-sm text-ink placeholder:text-taupe/70 transition focus:border-gold focus:bg-ivory focus:outline-none focus:ring-4 focus:ring-gold-soft/30;
+  }
+
+  .grid-pattern {
+    background-image:
+      linear-gradient(to right, rgba(176, 141, 87, 0.09) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(176, 141, 87, 0.09) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+}
+
+/* ---------- Motion ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-panel {
+  animation: panel-in 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-panel,
+  .animate-float {
+    animation: none;
+  }
+}
