@@ -13,6 +13,8 @@ import { profile } from '../data/profile';
 import { Reveal } from './Reveal';
 import { SectionHeading } from './SectionHeading';
 
+const WEB3FORMS_ACCESS_KEY = '784c4f8e-3f58-4258-88fe-89872eaf1b1a';
+
 const CONTACTS = [
   { label: 'Email', value: profile.email, href: `mailto:${profile.email}`, icon: Mail },
   { label: 'Phone', value: profile.phone, href: profile.phoneHref, icon: Phone },
@@ -34,32 +36,32 @@ export function Contact() {
   const update = (key: keyof typeof form) => (e: { target: { value: string } }) =>
     setForm((prev) => ({ ...prev, [key]: e.target.value }));
 
-  // Directly sends the form data to jekamaet@gmail.com via FormSubmit AJAX API
+  // Directly sends the form data via Web3Forms API to the user's Gmail
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
     setErrorMessage('');
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${profile.email}`, {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
         body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
           name: form.name,
           email: form.email,
           message: form.message,
-          _subject: `New Portfolio Message from ${form.name}`,
-          _template: 'table',
-          _captcha: 'false',
+          subject: `Portfolio Message from ${form.name}`,
+          from_name: 'Jeka Mae Taping Portfolio',
         }),
       });
 
       const data = await response.json().catch(() => null);
 
-      if (response.ok && data?.success !== 'false') {
+      if (response.ok && data?.success) {
         setStatus('success');
       } else {
         throw new Error(data?.message || 'Failed to send message. Please try again.');
@@ -152,8 +154,7 @@ export function Contact() {
                   Thank you, {form.name.split(' ')[0]}!
                 </h3>
                 <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
-                  Your message has been sent directly to my email at{' '}
-                  <span className="font-semibold text-navy">{profile.email}</span>. I will review it
+                  Your message has been sent directly to my email. I will review it
                   and get back to you shortly!
                 </p>
                 <button type="button" onClick={handleReset} className="btn btn-outline mt-8">
